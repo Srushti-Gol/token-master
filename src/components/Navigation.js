@@ -69,21 +69,22 @@ const Navigation = () => {
       }
 
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const contractAddress = '0x5fbdb2315678afecb367f032d93f642f64180aa3'; 
-      const contractABI = TokenMaster; 
+      const contractAddress = '0x5fbdb2315678afecb367f032d93f642f64180aa3';
+      const contractABI = TokenMaster;
       const signer = provider.getSigner();
       const contract = new ethers.Contract(contractAddress, contractABI, signer);
-
+      console.log(selectedOrganization);
       const timeStamp = parseInt(new Date() / 1000);
       const registerRequest = await contract.regRequest(
-        selectedOrganization.organizationAddress,
+        selectedOrganization,
         uuidv4(),
         requestTitle,
         requestDescription,
-        'Marksheet',
+        "Marksheet",
         timeStamp.toString(),
-        'Registrar'
+        "Registrar"
       );
+      console.log(registerRequest);
 
       console.log('Request registered successfully!');
     } catch (error) {
@@ -91,24 +92,25 @@ const Navigation = () => {
     }
   };
 
+
   useEffect(() => {
     if (account) {
       fetchOrganizations();
     }
   }, [account]);
-  
+
   return (
     <nav>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       {account ? (
         <button
           type="button"
@@ -126,14 +128,14 @@ const Navigation = () => {
         </button>
       )}
 
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <div className="border-solid border-5 border-blue-700">
         <div className="flex flex-col gap-4">
           <div>
@@ -164,22 +166,22 @@ const Navigation = () => {
         </div>
       </div>
 
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
 
       {/* Display organizations */}
       <div>
@@ -200,7 +202,7 @@ const Navigation = () => {
           <select value={selectedOrganization} onChange={(e) => setSelectedOrganization(e.target.value)}>
             <option value="">Select Organization</option>
             {organizations.map((org, index) => (
-              <option key={index} value={org}>
+              <option key={index} value={org.organizationAddress}>
                 {org.organizationName}
               </option>
             ))}
