@@ -15,11 +15,11 @@ function App() {
 
   return (
     <div>
-      <header>
+    
 
         <h2 className="header__title"><strong>Welcome to Tokenmaster</strong></h2>
         <Navigation/>
-      </header>
+    
         <StudentRegistration/>
 
     </div>
